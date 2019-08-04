@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+$heroku_db_url = parse_url(env('DATABASE_URL', "postgres://forge:forge@localhost:5432/forge"));
+
 return [
 
     /*
@@ -33,6 +35,7 @@ return [
     |
     */
 
+
     'connections' => [
 
         'sqlite' => [
@@ -41,6 +44,17 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        'pg-heroku' => [
+            'driver' => 'pgsql',
+            'host' => $heroku_db_url['host'],
+            'database' => substr($heroku_db_url['path'], 1),
+            'username' => $heroku_db_url['user'],
+            'password' => $heroku_db_url['pass'],
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
         ],
 
         'mysql' => [
