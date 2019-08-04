@@ -16,6 +16,16 @@
                             {!! Form::label('body', 'Body') !!}
                             {!! Form::text('body', $question->body, ['class' => 'form-control','required' => 'required']) !!}
                         </div>
+
+                            <form method="post" action="#" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                ...
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="img"/>
+                                </div>
+                                ...
+                            </form>
+
                         <button class="btn btn-success float-right" value="submit" type="submit" id="submit">Save
                         </button>
                         {!! Form::close() !!}
