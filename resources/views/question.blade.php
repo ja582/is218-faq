@@ -10,6 +10,7 @@
                     <div class="card-body">
                         <div><b>{{$question->title}}</b></div>
                         {{$question->body}}
+                        <img style="width:100%" src="/storage/user_images/{{$question->image}}">
                     </div>
                     <div class="card-footer">
                         <a class="btn btn-primary float-right"
@@ -37,6 +38,7 @@
                             <div class="card">
                                 <div class="card-body">{{$answer->title}}</div>
                                 <div class="card-body">{{$answer->body}}</div>
+                                <img style="width:100%" src="/storage/user_images/{{$post->image}}">
                                 <div class="card-footer">
 
                                     <a class="btn btn-primary float-right"
