@@ -12,20 +12,14 @@
                         @else()
                             {!! Form::model($question, ['route' => ['questions.update', $question->id], 'method' => 'patch']) !!}
                         @endif
+                         <div class="form-group">
+                             {!! Form::label('title', 'title') !!}
+                             {!! Form::text('title', $question->title, ['class' => 'form-control','required' => 'required']) !!}
+                        </div>
                         <div class="form-group">
                             {!! Form::label('body', 'Body') !!}
                             {!! Form::text('body', $question->body, ['class' => 'form-control','required' => 'required']) !!}
                         </div>
-
-                            <form method="post" action="#" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                ...
-                                <div class="form-group">
-                                    <input type="file" class="form-control" name="img"/>
-                                </div>
-                                ...
-                            </form>
-
                         <button class="btn btn-success float-right" value="submit" type="submit" id="submit">Save
                         </button>
                         {!! Form::close() !!}

@@ -44,11 +44,15 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
+            'title' => 'required|max:40',
             'body' => 'required|min:5',
         ], [
+            'title.required' => 'Title is required to make a question.',
+            'title.min' => 'Titles length can only be 40 characters',
             'body.required' => 'Body is required',
             'body.min' => 'Body must be at least 5 characters',
         ]);
+
         $input = request()->all();
         $question = new Question($input);
         $question->user()->associate(Auth::user());
@@ -89,8 +93,11 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $input = $request->validate([
+            'title' => 'required|max:40',
             'body' => 'required|min:5',
         ], [
+            'title.required' => 'Title is required to make a question.',
+            'title.min' => 'Titles length can only be 40 characters',
             'body.required' => 'Body is required',
             'body.min' => 'Body must be at least 5 characters',
         ]);

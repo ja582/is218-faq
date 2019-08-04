@@ -24,7 +24,7 @@
                                                 </small>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text">{{$question->body}}</p>
+                                                <p class="card-text">{{$question->title}}</p>
                                             </div>
                                             <div class="card-footer">
                                                 <p class="card-text">

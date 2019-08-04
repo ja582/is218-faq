@@ -8,7 +8,7 @@
                     <div class="card-header">Question</div>
 
                     <div class="card-body">
-
+                        <div><b>{{$question->title}}</b></div>
                         {{$question->body}}
                     </div>
                     <div class="card-footer">
@@ -35,6 +35,7 @@
                     <div class="card-body">
                         @forelse($question->answers as $answer)
                             <div class="card">
+                                <div class="card-body">{{$answer->title}}</div>
                                 <div class="card-body">{{$answer->body}}</div>
                                 <div class="card-footer">
 
