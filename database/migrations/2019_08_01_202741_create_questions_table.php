@@ -18,9 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->longText('body');
-            $table->string('filename')->nullable();
-            $table->string('mime')->nullable();
-            $table->string('original_filename')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

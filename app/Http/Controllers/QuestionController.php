@@ -46,6 +46,7 @@ class QuestionController extends Controller
         $input = $request->validate([
             'title' => 'required|max:40',
             'body' => 'required|min:5',
+            'image' => 'image|nullable|max:2084'
         ], [
             'title.required' => 'Title is required to make a question.',
             'title.min' => 'Titles length can only be 40 characters',
@@ -53,8 +54,23 @@ class QuestionController extends Controller
             'body.min' => 'Body must be at least 5 characters',
         ]);
 
+        if($request->hasFile('image')){
+            $fileNameExtension = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameExtension, PATHINFO_FILENAME);
+            $fileExtension = $request->file('image')->getClientOriginalExtension();
+            $fileNameStore = $fileName.'_'.time().'.'.$fileExtension;
+            $path = $request->file('image')->storeAs('public/user_images', $fileNameStore);
+        } else{
+            $fileNameStore = 'noimg.jpg';
+        }
+
+
+
         $input = request()->all();
         $question = new Question($input);
+        if($path){
+            $question->image = $path;
+        }
         $question->user()->associate(Auth::user());
         $question->save();
         return redirect()->route('home')->with('message', 'IT WORKS!');
@@ -95,6 +111,7 @@ class QuestionController extends Controller
         $input = $request->validate([
             'title' => 'required|max:40',
             'body' => 'required|min:5',
+            'image' => 'image|nullable|max:2084'
         ], [
             'title.required' => 'Title is required to make a question.',
             'title.min' => 'Titles length can only be 40 characters',
