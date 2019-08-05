@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div><b>{{$question->title}}</b></div>
                         {{$question->body}}
-                        <img style="width:100%" src="/storage/user_images/{{$question->image}}">
+                        <img style="width:100%" src="/storage/{{ substr($question->image, 7) }}">
                     </div>
                     <div class="card-footer">
                         <a class="btn btn-primary float-right"

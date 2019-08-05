@@ -64,8 +64,13 @@ class QuestionController extends Controller
             $fileNameStore = 'noimg.jpg';
         }
 
+
+
         $input = request()->all();
         $question = new Question($input);
+        if($path){
+            $question->image = $path;
+        }
         $question->user()->associate(Auth::user());
         $question->save();
         return redirect()->route('home')->with('message', 'IT WORKS!');
